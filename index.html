@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="lv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalendāra veidotājs</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <!-- App Header -->
+      <header class="app-header" role="banner">
+        <span class="header-icon" aria-hidden="true">📅</span>
+        <h1>Kalendāra veidotājs</h1>
+      </header>
+
+      <!-- Controls -->
+      <div class="controls" role="toolbar" aria-label="Kalendāra vadība">
+        <!-- Month navigation -->
+        <div class="nav-group">
+          <button id="prevMonth" class="btn-nav" aria-label="Iepriekšējais mēnesis">&#8249;</button>
+          <span id="monthYear" aria-live="polite" aria-atomic="true"></span>
+          <button id="nextMonth" class="btn-nav" aria-label="Nākamais mēnesis">&#8250;</button>
+        </div>
+
+        <button id="todayBtn" class="btn-today">Šodien</button>
+
+        <!-- Holiday toggle -->
+        <button id="toggleHolidays" class="btn-holiday" aria-pressed="true">
+          🇱🇻 Latvijas svētku dienas: ieslēgts
+        </button>
+
+        <!-- Print button -->
+        <button id="printBtn" class="btn-print" aria-label="Drukāt kalendāru">
+          🖨️ Drukāt
+        </button>
+
+        <!-- Jump to month/year -->
+        <div class="jump-group" role="group" aria-label="Pāriet uz mēnesi un gadu">
+          <select id="jumpMonth" aria-label="Izvēlēties mēnesi"></select>
+          <input
+            id="jumpYear"
+            type="number"
+            min="1900"
+            max="2200"
+            step="1"
+            aria-label="Ievadīt gadu"
+          />
+        </div>
+      </div>
+
+      <!-- Calendar -->
+      <main class="calendar-surface" id="calendarSurface" role="main">
+        <div id="calendarGrid" role="grid" aria-label="Kalendārs"></div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="app-footer" role="contentinfo">
+        <p>Piezīmes tiek saglabātas automātiski jūsu pārlūkprogrammā.</p>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="holidays.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
