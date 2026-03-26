@@ -237,6 +237,7 @@ function init() {
   document.getElementById("todayBtn").addEventListener("click", goToToday);
   document.getElementById("toggleHolidays").addEventListener("click", toggleHolidays);
   document.getElementById("printBtn").addEventListener("click", printCalendar);
+  document.getElementById("pdfBtn").addEventListener("click", saveAsPdf);
   document.getElementById("jumpMonth").addEventListener("change", jumpToMonth);
   document.getElementById("jumpYear").addEventListener("change", jumpToMonth);
 
