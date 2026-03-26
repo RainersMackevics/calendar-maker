@@ -135,7 +135,6 @@ function renderCalendar() {
       "day-cell",
       isWeekend ? "weekend" : "",
       holiday ? "holiday" : "",
-      isToday ? "today" : "",
     ]
       .filter(Boolean)
       .join(" ");
@@ -209,6 +208,11 @@ function toggleHolidays() {
 
 // ── Print ──────────────────────────────────────────────────
 function printCalendar() {
+  window.print();
+}
+
+// ── Save as PDF ────────────────────────────────────────────
+function saveAsPdf() {
   window.print();
 }
 
