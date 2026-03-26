@@ -187,6 +187,16 @@ button:active {
   background: var(--color-primary-dark);
 }
 
+.btn-pdf {
+  background: #27ae60;
+  color: #fff;
+  margin-left: 4px;
+}
+
+.btn-pdf:hover {
+  background: #1e8449;
+}
+
 /* ── Calendar Surface ───────────────────────────────────── */
 .calendar-surface {
   background: var(--color-surface);
@@ -247,12 +257,6 @@ button:active {
   background: var(--color-holiday-bg);
 }
 
-.day-cell.today {
-  background: var(--color-today-bg);
-  outline: 2px solid var(--color-today-border);
-  outline-offset: -2px;
-}
-
 /* Day number badge */
 .day-number {
   display: inline-block;
@@ -264,11 +268,6 @@ button:active {
   line-height: 22px;
   text-align: center;
   border-radius: 50%;
-}
-
-.day-cell.today .day-number {
-  background: var(--color-primary);
-  color: #fff;
 }
 
 .day-cell.weekend .day-number,
@@ -363,7 +362,9 @@ button:active {
     display: none !important;
   }
 
+  html,
   body {
+    width: 100%;
     background: #fff;
     font-size: 10pt;
     -webkit-print-color-adjust: exact;
@@ -371,7 +372,8 @@ button:active {
   }
 
   .page-wrapper {
-    max-width: 100%;
+    width: 100%;
+    max-width: none;
     padding: 0;
     margin: 0;
   }
@@ -389,11 +391,13 @@ button:active {
   }
 
   .calendar-surface {
+    width: 100%;
     box-shadow: none;
     border-radius: 0;
   }
 
   #calendarGrid {
+    width: 100%;
     border-top: 1.5pt solid #555;
     border-left: 1.5pt solid #555;
   }
@@ -431,11 +435,6 @@ button:active {
     background: #fff0f0 !important;
   }
 
-  .day-cell.today {
-    outline: none;
-    background: #eef3ff !important;
-  }
-
   .day-number {
     font-size: 9pt;
     height: auto;
@@ -447,13 +446,6 @@ button:active {
   .day-cell.weekend .day-number,
   .day-cell.holiday .day-number {
     color: #c0392b !important;
-  }
-
-  .day-cell.today .day-number {
-    background: var(--color-primary) !important;
-    color: #fff !important;
-    border-radius: 50%;
-    padding: 1mm 2mm;
   }
 
   .holiday-label {

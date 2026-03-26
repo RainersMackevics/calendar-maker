@@ -135,7 +135,6 @@ function renderCalendar() {
       "day-cell",
       isWeekend ? "weekend" : "",
       holiday ? "holiday" : "",
-      isToday ? "today" : "",
     ]
       .filter(Boolean)
       .join(" ");
@@ -212,6 +211,11 @@ function printCalendar() {
   window.print();
 }
 
+// ── Save as PDF ────────────────────────────────────────────
+function saveAsPdf() {
+  window.print();
+}
+
 // ── Init ───────────────────────────────────────────────────
 function init() {
   loadFromStorage();
@@ -233,6 +237,7 @@ function init() {
   document.getElementById("todayBtn").addEventListener("click", goToToday);
   document.getElementById("toggleHolidays").addEventListener("click", toggleHolidays);
   document.getElementById("printBtn").addEventListener("click", printCalendar);
+  document.getElementById("pdfBtn").addEventListener("click", saveAsPdf);
   document.getElementById("jumpMonth").addEventListener("change", jumpToMonth);
   document.getElementById("jumpYear").addEventListener("change", jumpToMonth);
 
