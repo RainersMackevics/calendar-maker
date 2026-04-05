@@ -135,6 +135,7 @@ function renderCalendar() {
       "day-cell",
       isWeekend ? "weekend" : "",
       holiday ? "holiday" : "",
+      isToday ? "today" : "",
     ]
       .filter(Boolean)
       .join(" ");
@@ -240,6 +241,29 @@ function init() {
   document.getElementById("pdfBtn").addEventListener("click", saveAsPdf);
   document.getElementById("jumpMonth").addEventListener("change", jumpToMonth);
   document.getElementById("jumpYear").addEventListener("change", jumpToMonth);
+
+  // Swipe left/right on the calendar to navigate months (mobile)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchId = null;
+  const surface = document.getElementById("calendarSurface");
+  surface.addEventListener("touchstart", (e) => {
+    const t = e.changedTouches[0];
+    touchId = t.identifier;
+    touchStartX = t.screenX;
+    touchStartY = t.screenY;
+  }, { passive: true });
+  surface.addEventListener("touchend", (e) => {
+    // Find the touch that started the gesture
+    const t = Array.from(e.changedTouches).find((ct) => ct.identifier === touchId);
+    if (!t) return;
+    const dx = touchStartX - t.screenX;
+    const dy = touchStartY - t.screenY;
+    // Only act when horizontal swipe dominates
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      navigate(dx > 0 ? 1 : -1);
+    }
+  }, { passive: true });
 
   renderCalendar();
 }

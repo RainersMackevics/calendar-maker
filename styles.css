@@ -44,6 +44,9 @@ body {
   background: var(--color-bg);
   color: var(--color-day-number);
   min-height: 100vh;
+  /* iOS standalone: extend background under translucent status bar */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* ── Page Wrapper ───────────────────────────────────────── */
@@ -117,6 +120,8 @@ body {
   font-size: 0.9rem;
   background: var(--color-surface);
   color: var(--color-day-number);
+  touch-action: manipulation;
+  min-height: 44px;
 }
 
 .jump-group input[type="number"] {
@@ -133,6 +138,10 @@ button {
   font-size: 0.9rem;
   font-weight: 600;
   transition: background 0.15s, transform 0.1s;
+  /* Prevent 300 ms tap delay on mobile */
+  touch-action: manipulation;
+  /* Minimum touch target size */
+  min-height: 44px;
 }
 
 button:active {
@@ -313,6 +322,32 @@ button:active {
   border-radius: 3px;
 }
 
+/* Today's date – highlighted badge */
+.day-cell.today {
+  background: var(--color-today-bg);
+  box-shadow: inset 0 0 0 2px var(--color-today-border);
+}
+
+.day-cell.today .day-number {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Swipe hint shown only on touch devices */
+.swipe-hint {
+  display: none;
+  text-align: center;
+  font-size: 0.72rem;
+  color: #aaa;
+  margin-top: 8px;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .swipe-hint {
+    display: block;
+  }
+}
+
 /* ── Footer ─────────────────────────────────────────────── */
 .app-footer {
   margin-top: 20px;
@@ -323,26 +358,88 @@ button:active {
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 700px) {
+  .page-wrapper {
+    padding: 12px 8px 32px;
+  }
+
+  .app-header {
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+
+  .app-header h1 {
+    font-size: 1.2rem;
+  }
+
   .controls {
     flex-direction: column;
     align-items: stretch;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  /* Nav row: prev / month-year / next all in one row */
+  .nav-group {
+    justify-content: center;
+  }
+
+  /* Today + holiday toggle side by side */
+  .btn-today,
+  .btn-holiday {
+    flex: 1;
+  }
+
+  /* Print / PDF row */
+  .btn-print,
+  .btn-pdf {
+    margin-left: 0;
+    flex: 1;
   }
 
   .jump-group {
     margin-left: 0;
+    justify-content: center;
   }
 
-  .day-cell {
-    min-height: 80px;
-  }
-
-  .day-note {
-    min-height: 36px;
+  .jump-group select,
+  .jump-group input[type="number"] {
+    flex: 1;
   }
 
   #monthYear {
     font-size: 1rem;
     min-width: 0;
+  }
+
+  /* Compact calendar cells on phones */
+  .day-cell {
+    min-height: 72px;
+    padding: 4px 3px 2px;
+  }
+
+  .day-note {
+    min-height: 32px;
+    font-size: 0.7rem;
+  }
+
+  .holiday-label {
+    font-size: 0.6rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .day-cell {
+    min-height: 60px;
+  }
+
+  .day-note {
+    min-height: 24px;
+  }
+
+  .day-header {
+    font-size: 0.68rem;
+    padding: 8px 2px;
   }
 }
 
@@ -446,6 +543,16 @@ button:active {
   .day-cell.weekend .day-number,
   .day-cell.holiday .day-number {
     color: #c0392b !important;
+  }
+
+  .day-cell.today {
+    background: #eaf0ff !important;
+    box-shadow: inset 0 0 0 1.5pt #3a6bd4 !important;
+  }
+
+  .day-cell.today .day-number {
+    background: #3a6bd4 !important;
+    color: #fff !important;
   }
 
   .holiday-label {
