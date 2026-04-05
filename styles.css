@@ -20,6 +20,13 @@
   --color-placeholder: #aab4c8;
   --color-header-bg: #2c3e6e;
   --color-header-text: #ffffff;
+  /* Extended tokens used across themes */
+  --color-empty-bg: #f9fafc;
+  --color-header-weekend-bg: #3d2c5e;
+  --color-note-text: #444444;
+  --color-holiday-surface: #fff5f5;
+  --color-holiday-surface-border: #f5c6c6;
+  --color-holiday-surface-active: #fde8e8;
   --radius: 6px;
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   --font: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
@@ -100,7 +107,7 @@ body {
   font-weight: 700;
   min-width: 200px;
   text-align: center;
-  color: var(--color-header-bg);
+  color: var(--color-day-number);
 }
 
 /* ── Jump Controls ──────────────────────────────────────── */
@@ -112,7 +119,8 @@ body {
 }
 
 .jump-group select,
-.jump-group input[type="number"] {
+.jump-group input[type="number"],
+.theme-select {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: 6px 8px;
@@ -172,18 +180,18 @@ button:active {
 }
 
 .btn-holiday {
-  background: #fff5f5;
+  background: var(--color-holiday-surface);
   color: var(--color-holiday-text);
-  border: 1px solid #f5c6c6;
+  border: 1px solid var(--color-holiday-surface-border);
 }
 
 .btn-holiday.active {
-  background: #fde8e8;
+  background: var(--color-holiday-surface-active);
   border-color: var(--color-holiday-text);
 }
 
 .btn-holiday:hover {
-  background: #fde8e8;
+  background: var(--color-holiday-surface-active);
 }
 
 .btn-print {
@@ -237,7 +245,7 @@ button:active {
 }
 
 .day-header.weekend {
-  background: #3d2c5e;
+  background: var(--color-header-weekend-bg);
 }
 
 /* Day cells */
@@ -255,7 +263,7 @@ button:active {
 }
 
 .day-cell.empty {
-  background: #f9fafc;
+  background: var(--color-empty-bg);
 }
 
 .day-cell.weekend {
@@ -305,7 +313,7 @@ button:active {
   resize: none;
   font-family: var(--font);
   font-size: 0.75rem;
-  color: #444;
+  color: var(--color-note-text);
   line-height: 1.4;
   outline: none;
   min-height: 54px;
@@ -406,6 +414,14 @@ button:active {
     flex: 1;
   }
 
+  .theme-group {
+    justify-content: center;
+  }
+
+  .theme-select {
+    flex: 1;
+  }
+
   #monthYear {
     font-size: 1rem;
     min-width: 0;
@@ -441,6 +457,140 @@ button:active {
     font-size: 0.68rem;
     padding: 8px 2px;
   }
+}
+
+/* =========================================================
+   THEME DEFINITIONS
+   ========================================================= */
+
+/* ── Theme Selector ─────────────────────────────────────── */
+.theme-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.theme-select {
+  cursor: pointer;
+  padding-right: 10px;
+}
+
+/* ── Theme: Dark Night ──────────────────────────────────── */
+body.theme-dark {
+  --color-bg: #0f1117;
+  --color-surface: #1a1f2e;
+  --color-border: #2d3557;
+  --color-primary: #7c9ef0;
+  --color-primary-dark: #5b80e8;
+  --color-today-bg: #1e2a52;
+  --color-today-border: #7c9ef0;
+  --color-weekend-bg: #1e1628;
+  --color-weekend-text: #f28b82;
+  --color-holiday-bg: #1e1a1a;
+  --color-holiday-text: #f28b82;
+  --color-holiday-label: #f28b82;
+  --color-day-number: #cdd5f3;
+  --color-placeholder: #3d4568;
+  --color-header-bg: #080c1a;
+  --color-header-text: #cdd5f3;
+  --color-empty-bg: #141826;
+  --color-header-weekend-bg: #1c1138;
+  --color-note-text: #b0b8d8;
+  --color-holiday-surface: #1e1212;
+  --color-holiday-surface-border: #5c2626;
+  --color-holiday-surface-active: #261a1a;
+  --shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+
+body.theme-dark .btn-pdf {
+  background: #1a6b3a;
+}
+
+body.theme-dark .btn-pdf:hover {
+  background: #145228;
+}
+
+body.theme-dark .day-note:focus {
+  background: rgba(124, 158, 240, 0.07);
+}
+
+/* ── Theme: Minimal ─────────────────────────────────────── */
+body.theme-minimal {
+  --color-bg: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-border: #dee2e6;
+  --color-primary: #212529;
+  --color-primary-dark: #000000;
+  --color-today-bg: #f1f3f5;
+  --color-today-border: #212529;
+  --color-weekend-bg: #fdfdfd;
+  --color-weekend-text: #868e96;
+  --color-holiday-bg: #fdfdfd;
+  --color-holiday-text: #868e96;
+  --color-holiday-label: #adb5bd;
+  --color-day-number: #212529;
+  --color-placeholder: #ced4da;
+  --color-header-bg: #212529;
+  --color-header-text: #f8f9fa;
+  --color-empty-bg: #f1f3f5;
+  --color-header-weekend-bg: #343a40;
+  --color-note-text: #495057;
+  --color-holiday-surface: #f8f9fa;
+  --color-holiday-surface-border: #dee2e6;
+  --color-holiday-surface-active: #f1f3f5;
+  --font: Georgia, "Times New Roman", serif;
+}
+
+/* ── Theme: Forest ──────────────────────────────────────── */
+body.theme-forest {
+  --color-bg: #f0fdf4;
+  --color-surface: #ffffff;
+  --color-border: #bbf7d0;
+  --color-primary: #15803d;
+  --color-primary-dark: #14532d;
+  --color-today-bg: #dcfce7;
+  --color-today-border: #16a34a;
+  --color-weekend-bg: #fefce8;
+  --color-weekend-text: #854d0e;
+  --color-holiday-bg: #fef9c3;
+  --color-holiday-text: #854d0e;
+  --color-holiday-label: #a16207;
+  --color-day-number: #14532d;
+  --color-placeholder: #86efac;
+  --color-header-bg: #14532d;
+  --color-header-text: #f0fdf4;
+  --color-empty-bg: #f0fdf4;
+  --color-header-weekend-bg: #365314;
+  --color-note-text: #166534;
+  --color-holiday-surface: #fdfde8;
+  --color-holiday-surface-border: #fde68a;
+  --color-holiday-surface-active: #fef9c3;
+}
+
+/* ── Theme: Warm Sunset ─────────────────────────────────── */
+body.theme-sunset {
+  --color-bg: #fff7ed;
+  --color-surface: #ffffff;
+  --color-border: #fed7aa;
+  --color-primary: #c2410c;
+  --color-primary-dark: #9a3412;
+  --color-today-bg: #fef3c7;
+  --color-today-border: #d97706;
+  --color-weekend-bg: #fef9ee;
+  --color-weekend-text: #9a3412;
+  --color-holiday-bg: #fee2e2;
+  --color-holiday-text: #9a3412;
+  --color-holiday-label: #b91c1c;
+  --color-day-number: #44403c;
+  --color-placeholder: #fdba74;
+  --color-header-bg: #7c2d12;
+  --color-header-text: #fff7ed;
+  --color-empty-bg: #fefaf5;
+  --color-header-weekend-bg: #92400e;
+  --color-note-text: #57534e;
+  --color-holiday-surface: #fff1f0;
+  --color-holiday-surface-border: #fca5a5;
+  --color-holiday-surface-active: #fee2e2;
 }
 
 /* =========================================================
@@ -509,7 +659,7 @@ button:active {
   }
 
   .day-header.weekend {
-    background: #3d2c5e !important;
+    background: var(--color-header-weekend-bg) !important;
   }
 
   .day-cell {
