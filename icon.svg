@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- App background -->
+  <rect width="512" height="512" rx="96" fill="#2c3e6e"/>
+
+  <!-- Calendar card -->
+  <rect x="60" y="108" width="392" height="340" rx="24" fill="white"/>
+
+  <!-- Header bar -->
+  <rect x="60" y="108" width="392" height="104" rx="24" fill="#3a6bd4"/>
+  <rect x="60" y="180" width="392" height="32" fill="#3a6bd4"/>
+
+  <!-- Ring bindings -->
+  <rect x="148" y="68" width="30" height="84" rx="15" fill="#1a274d"/>
+  <rect x="334" y="68" width="30" height="84" rx="15" fill="#1a274d"/>
+
+  <!-- Day-cell grid: 7 cols × 3 rows -->
+  <!-- Row 1 -->
+  <rect x="76"  y="232" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="128" y="232" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="180" y="232" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="232" y="232" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="284" y="232" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="336" y="232" width="44" height="34" rx="6" fill="#fef3f3"/>
+  <rect x="388" y="232" width="40" height="34" rx="6" fill="#fef3f3"/>
+  <!-- Row 2 – highlight today cell -->
+  <rect x="76"  y="278" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="128" y="278" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="180" y="278" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="232" y="278" width="44" height="34" rx="6" fill="#3a6bd4"/>
+  <rect x="284" y="278" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="336" y="278" width="44" height="34" rx="6" fill="#fef3f3"/>
+  <rect x="388" y="278" width="40" height="34" rx="6" fill="#fef3f3"/>
+  <!-- Row 3 -->
+  <rect x="76"  y="324" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="128" y="324" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="180" y="324" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="232" y="324" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="284" y="324" width="44" height="34" rx="6" fill="#eef2fb"/>
+  <rect x="336" y="324" width="44" height="34" rx="6" fill="#fef3f3"/>
+  <rect x="388" y="324" width="40" height="34" rx="6" fill="#fef3f3"/>
+  <!-- Row 4 -->
+  <rect x="76"  y="370" width="44" height="32" rx="6" fill="#eef2fb"/>
+  <rect x="128" y="370" width="44" height="32" rx="6" fill="#eef2fb"/>
+  <rect x="180" y="370" width="44" height="32" rx="6" fill="#eef2fb"/>
+  <rect x="232" y="370" width="44" height="32" rx="6" fill="#eef2fb"/>
+  <rect x="284" y="370" width="44" height="32" rx="6" fill="#eef2fb"/>
+</svg>
