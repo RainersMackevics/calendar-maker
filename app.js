@@ -19,10 +19,13 @@ const DAY_NAMES_FULL_LV = [
 const STORAGE_KEY = "calendarMaker_data";
 const SETTINGS_KEY = "calendarMaker_settings";
 
+const THEMES = ["", "theme-dark", "theme-minimal", "theme-forest", "theme-sunset"];
+
 // ── State ──────────────────────────────────────────────────
 let currentYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth(); // 0-indexed
 let showHolidays = true;
+let currentTheme = "";
 
 // Persisted note data: { "YYYY-MM-DD": "text", … }
 let noteData = {};
@@ -35,6 +38,9 @@ function loadFromStorage() {
     const settings = JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}");
     if (typeof settings.showHolidays === "boolean") {
       showHolidays = settings.showHolidays;
+    }
+    if (typeof settings.theme === "string" && THEMES.includes(settings.theme)) {
+      currentTheme = settings.theme;
     }
   } catch (_) {
     noteData = {};
@@ -50,7 +56,7 @@ function saveNote(key, text) {
 
 function saveSettings() {
   try {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({ showHolidays }));
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify({ showHolidays, theme: currentTheme }));
   } catch (_) {}
 }
 
@@ -167,6 +173,20 @@ function renderCalendar() {
   }
 }
 
+// ── Theme ───────────────────────────────────────────────────
+function applyTheme(theme) {
+  THEMES.forEach((t) => { if (t) document.body.classList.remove(t); });
+  if (theme) document.body.classList.add(theme);
+  currentTheme = theme;
+  const sel = document.getElementById("themeSelect");
+  if (sel) sel.value = theme;
+}
+
+function changeTheme(theme) {
+  applyTheme(theme);
+  saveSettings();
+}
+
 // ── Navigation ─────────────────────────────────────────────
 function navigate(delta) {
   currentMonth += delta;
@@ -220,6 +240,7 @@ function saveAsPdf() {
 // ── Init ───────────────────────────────────────────────────
 function init() {
   loadFromStorage();
+  applyTheme(currentTheme);
 
   // Populate jump controls
   const monthSel = document.getElementById("jumpMonth");
@@ -241,6 +262,7 @@ function init() {
   document.getElementById("pdfBtn").addEventListener("click", saveAsPdf);
   document.getElementById("jumpMonth").addEventListener("change", jumpToMonth);
   document.getElementById("jumpYear").addEventListener("change", jumpToMonth);
+  document.getElementById("themeSelect").addEventListener("change", (e) => changeTheme(e.target.value));
 
   // Swipe left/right on the calendar to navigate months (mobile)
   let touchStartX = 0;
